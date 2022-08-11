@@ -15,7 +15,7 @@
     "deploy_create": "npm run build && eb list && eb create --sample udagram-api-dev && eb use udagram-api-dev && eb deploy",
 
     "build": "npm install . && npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
-    "deploy": "eb list && eb use udagram-api-dev && eb deploy",
+    "deploy": "eb list && eb use udagram-api-dev && eb deploy udagram-api-dev ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
