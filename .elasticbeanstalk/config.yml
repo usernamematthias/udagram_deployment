@@ -19,5 +19,5 @@ global:
   platform_version: null
   profile: default
   repository: main
-  sc: git
+  sc: null
   workspace_type: Application
