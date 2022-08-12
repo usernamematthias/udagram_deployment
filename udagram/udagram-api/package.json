@@ -15,8 +15,9 @@
     "deploy_create": "npm run build && eb list && eb create --sample udagram-api-dev && eb use udagram-api-dev && eb deploy",
 
     "build": "npm install . && npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
-    "deploy": "eb list && eb use udagram-api-dev && eb deploy udagram-api-dev ",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "eb list && eb use udagram-api-dev && setenv AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_BUCKET=$AWS_BUCKET AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION AWS_PROFILE=$AWS_PROFILE AWS_REGION=$AWS_REGION AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY JWT_SECRET=$JWT_SECRET PORT=$PORT POSTGRES_DB=$POSTGRES_DB POSTGRES_HOST=$POSTGRES_HOST POSTGRES_PASSWORD=$POSTGRES_PASSWORD POSTGRES_USERNAME=$POSTGRES_USERNAME URL=$URL && eb deploy udagram-api-dev ",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "hi":"eb setenv PORT=$PORT POSTGRES_USERNAME=$POSTGRES_USERNAME    POSTGRES_DB=$POSTGRES_DB POSTGRES_PORT=$POSTGRES_PORT "
   },
   "keywords": [],
   "author": "Gabriel Ruttner",
