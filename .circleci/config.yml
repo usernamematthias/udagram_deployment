@@ -13,11 +13,12 @@ jobs:
     steps:
       # install node and checkout code
       - node/install:
-          node-version: '14.15'         
-      - eb/setup
-      - aws-cli/setup
+          node-version: '14.15'  
+      # - eb/setup
+      # - aws-cli/setup      
+
       - checkout
-       # Use root level package.json to install dependencies in the frontend app
+      # Use root level package.json to install dependencies in the frontend app
       - run:
           name: Install Front-End Dependencies
           command: |
@@ -50,13 +51,17 @@ jobs:
           command: |
             echo "TODO: Build the backend API"
             npm run api:build
-            
-      - run:
-          name: Deploy App
-          # TODO: Install, build, deploy in both apps
-          command: |
-            echo "# TODO: Install, build, deploy in both apps"
-            npm run deploy
+      - persist_to_workspace:
+        root: .
+        path:
+          - .
+
+      # - run:
+      #     name: Deploy App
+      #     # TODO: Install, build, deploy in both apps
+      #     command: |
+      #       echo "# TODO: Install, build, deploy in both apps"
+      #       npm run deploy
 
   # deploy step will run only after manual approval
   deploy:
@@ -64,10 +69,19 @@ jobs:
       - image: "cimg/base:stable"
       # more setup needed for aws, node, elastic beanstalk
     steps:
+      - attach_workspace:
+        -at: .
       - node/install:
           node-version: '14.15' 
-  
+      - eb/setup
+      - aws-cli/setup
       - checkout
+      - run:
+          name: Deploy App
+          # TODO: Install, build, deploy in both apps
+          command: |
+            echo "# TODO: Install, build, deploy in both apps"
+            npm run deploy
             
 workflows:
   udagram:
@@ -84,3 +98,5 @@ workflows:
       - deploy:
           requires:
             - hold
+
+            
