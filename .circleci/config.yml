@@ -51,10 +51,7 @@ jobs:
           command: |
             echo "TODO: Build the backend API"
             npm run api:build
-      - persist_to_workspace:
-        root: .
-        path:
-          - .
+    
 
       # - run:
       #     name: Deploy App
@@ -69,8 +66,7 @@ jobs:
       - image: "cimg/base:stable"
       # more setup needed for aws, node, elastic beanstalk
     steps:
-      - attach_workspace:
-        -at: .
+
       - node/install:
           node-version: '14.15' 
       - eb/setup
