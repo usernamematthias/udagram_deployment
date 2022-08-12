@@ -14,8 +14,8 @@ jobs:
       # install node and checkout code
       - node/install:
           node-version: '14.15'  
-      - eb/setup
-      - aws-cli/setup      
+      # - eb/setup
+      # - aws-cli/setup      
 
       - checkout
       # Use root level package.json to install dependencies in the frontend app
@@ -53,12 +53,12 @@ jobs:
             npm run api:build
     
 
-      - run:
-          name: Deploy App
-          # TODO: Install, build, deploy in both apps
-          command: |
-            echo "# TODO: Install, build, deploy in both apps"
-            npm run frontend:deploy
+      # - run:
+      #     name: Deploy App
+      #     # TODO: Install, build, deploy in both apps
+      #     command: |
+      #       echo "# TODO: Install, build, deploy in both apps"
+      #       npm run frontend:deploy
 
   # deploy step will run only after manual approval
   deploy:
@@ -72,12 +72,12 @@ jobs:
       - eb/setup
       - aws-cli/setup
       - checkout
-      # - run:
-      #     name: Deploy App
-      #     # TODO: Install, build, deploy in both apps
-      #     command: |
-      #       echo "# TODO: Install, build, deploy in both apps"
-      #       npm run deploy
+      - run:
+          name: Deploy App
+          # TODO: Install, build, deploy in both apps
+          command: |
+            echo "# TODO: Install, build, deploy in both apps"
+            npm run frontend:deploy
             
 workflows:
   udagram:
